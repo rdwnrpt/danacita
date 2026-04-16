@@ -13,7 +13,7 @@ A data ingestion and analytics repository for Danacita.
 
 - Python 3.11 or newer
 - dbt 1.x with `dbt-core` and `dbt-postgres`
-- `pandas`, `openpyxl`, `jupyter`, `notebook`
+- `pandas`, `openpyxl`
 - A configured Postgres target and a dbt profile named `danacita_analytics`
 
 ## Setup
