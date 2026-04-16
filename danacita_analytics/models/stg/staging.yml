@@ -1,0 +1,43 @@
+version: 2
+
+models:
+  - name: stg_loanbook
+    description: Cleaned and standardized loan book snapshot data
+    columns:
+      - name: snapshot_date
+        description: Date of the snapshot
+        tests:
+          - not_null
+      - name: loan_id
+        description: Unique loan identifier
+        tests:
+          - not_null
+      - name: requested_principal
+        tests:
+          - not_null
+      - name: outstanding_balance_clean
+        description: Outstanding balance with nulls converted to 0
+        tests:
+          - not_null
+
+  - name: stg_fx_rates
+    description: Cleaned and standardized FX rate data
+    columns:
+      - name: rate_type
+        tests:
+          - not_null
+      - name: currency_code
+        tests:
+          - not_null
+      - name: rate_date
+        tests:
+          - not_null
+      - name: exchange_rate
+        tests:
+          - not_null
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - rate_type
+            - currency_code
+            - rate_date

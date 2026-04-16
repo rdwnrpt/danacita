@@ -1,0 +1,52 @@
+version: 2
+
+sources:
+  - name: raw
+    description: Raw source data from operational systems
+    database: danacita
+    schema: dev
+    tables:
+      - name: src_loanbook
+        description: Daily snapshot of loan book status
+        columns:
+          - name: snapshot_date
+            description: Date of the snapshot
+            tests:
+              - not_null
+          - name: loan_id
+            description: Unique loan identifier
+            tests:
+              - not_null
+          - name: requested_principal
+            description: Original requested loan amount
+          - name: outstanding_balance
+            description: Current outstanding balance
+          - name: status
+            description: Loan status (Submission, Activated, Closed)
+            tests:
+              - accepted_values:
+                  arguments:
+                    values: ['Submission', 'Activated', 'Closed']
+        
+      - name: src_fx_rate_cleaned
+        description: Foreign exchange rates by currency and date
+        columns:
+          - name: rate_type
+            description: Type of rate (Closing rate, Average rate)
+            tests:
+              - not_null
+              - accepted_values:
+                  arguments:
+                    values: ['Closing rate', 'Average rate']
+          - name: currency
+            description: Currency code (PHP, IDR)
+            tests:
+              - not_null
+          - name: date
+            description: Rate effective date
+            tests:
+              - not_null
+          - name: value
+            description: Exchange rate value
+            tests:
+              - not_null

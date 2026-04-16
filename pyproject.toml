@@ -1,0 +1,15 @@
+[project]
+name = "danacita"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "dbt>=1.0.0.40.16",
+    "dbt-core>=1.11.8",
+    "dbt-postgres>=1.10.0",
+    "pandas>=2.0.0",
+    "openpyxl>=3.1.0",
+    "jupyter>=1.1.1",
+    "notebook>=7.5.5",
+]
